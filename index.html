@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <h1>Tic Tac Toe</h1>
+        <p class="subtitle">Classic 3×3 — play with a friend or challenge the computer</p>
+      </header>
+
+      <section class="controls">
+        <div class="mode-toggle" role="group" aria-label="Game mode">
+          <button type="button" class="mode-btn active" data-mode="pvp">2 Players</button>
+          <button type="button" class="mode-btn" data-mode="cpu">vs CPU</button>
+        </div>
+        <button type="button" class="btn-reset" id="reset-scores">Reset Scores</button>
+      </section>
+
+      <section class="scoreboard" aria-label="Scoreboard">
+        <div class="score-card score-x">
+          <span class="score-label">X</span>
+          <span class="score-value" id="score-x">0</span>
+        </div>
+        <div class="score-card score-draw">
+          <span class="score-label">Draws</span>
+          <span class="score-value" id="score-draw">0</span>
+        </div>
+        <div class="score-card score-o">
+          <span class="score-label">O</span>
+          <span class="score-value" id="score-o">0</span>
+        </div>
+      </section>
+
+      <p class="status" id="status" aria-live="polite">X's turn</p>
+
+      <div class="board" id="board" role="grid" aria-label="Tic tac toe board">
+        <button type="button" class="cell" data-index="0" role="gridcell" aria-label="Cell 1"></button>
+        <button type="button" class="cell" data-index="1" role="gridcell" aria-label="Cell 2"></button>
+        <button type="button" class="cell" data-index="2" role="gridcell" aria-label="Cell 3"></button>
+        <button type="button" class="cell" data-index="3" role="gridcell" aria-label="Cell 4"></button>
+        <button type="button" class="cell" data-index="4" role="gridcell" aria-label="Cell 5"></button>
+        <button type="button" class="cell" data-index="5" role="gridcell" aria-label="Cell 6"></button>
+        <button type="button" class="cell" data-index="6" role="gridcell" aria-label="Cell 7"></button>
+        <button type="button" class="cell" data-index="7" role="gridcell" aria-label="Cell 8"></button>
+        <button type="button" class="cell" data-index="8" role="gridcell" aria-label="Cell 9"></button>
+      </div>
+
+      <button type="button" class="btn-new-game" id="new-game">New Game</button>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
