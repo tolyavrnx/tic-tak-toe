@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tic Tac Toe</title>
+    <title>Game Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,51 +14,127 @@
   </head>
   <body>
     <div class="app">
-      <header class="header">
-        <h1>Tic Tac Toe</h1>
-        <p class="subtitle">Classic 3×3 — play with a friend or challenge the computer</p>
-      </header>
+      <nav class="game-nav" aria-label="Choose a game">
+        <button type="button" class="game-nav-btn active" data-game="tictactoe">Tic Tac Toe</button>
+        <button type="button" class="game-nav-btn" data-game="miner">Miner</button>
+        <button type="button" class="game-nav-btn" data-game="sokoban">Sokoban</button>
+      </nav>
 
-      <section class="controls">
-        <div class="mode-toggle" role="group" aria-label="Game mode">
-          <button type="button" class="mode-btn active" data-mode="pvp">2 Players</button>
-          <button type="button" class="mode-btn" data-mode="cpu">vs CPU</button>
-        </div>
-        <button type="button" class="btn-reset" id="reset-scores">Reset Scores</button>
-      </section>
+      <div id="game-tictactoe" class="game-panel active">
+        <header class="header">
+          <h1>Tic Tac Toe</h1>
+          <p class="subtitle">Classic 3×3 — play with a friend or challenge the computer</p>
+        </header>
 
-      <section class="scoreboard" aria-label="Scoreboard">
-        <div class="score-card score-x">
-          <span class="score-label">X</span>
-          <span class="score-value" id="score-x">0</span>
-        </div>
-        <div class="score-card score-draw">
-          <span class="score-label">Draws</span>
-          <span class="score-value" id="score-draw">0</span>
-        </div>
-        <div class="score-card score-o">
-          <span class="score-label">O</span>
-          <span class="score-value" id="score-o">0</span>
-        </div>
-      </section>
+        <section class="controls">
+          <div class="mode-toggle" role="group" aria-label="Game mode">
+            <button type="button" class="mode-btn active" data-mode="pvp">2 Players</button>
+            <button type="button" class="mode-btn" data-mode="cpu">vs CPU</button>
+          </div>
+          <button type="button" class="btn-reset" id="reset-scores">Reset Scores</button>
+        </section>
 
-      <p class="status" id="status" aria-live="polite">X's turn</p>
+        <section class="scoreboard" aria-label="Scoreboard">
+          <div class="score-card score-x">
+            <span class="score-label">X</span>
+            <span class="score-value" id="score-x">0</span>
+          </div>
+          <div class="score-card score-draw">
+            <span class="score-label">Draws</span>
+            <span class="score-value" id="score-draw">0</span>
+          </div>
+          <div class="score-card score-o">
+            <span class="score-label">O</span>
+            <span class="score-value" id="score-o">0</span>
+          </div>
+        </section>
 
-      <div class="board" id="board" role="grid" aria-label="Tic tac toe board">
-        <button type="button" class="cell" data-index="0" role="gridcell" aria-label="Cell 1"></button>
-        <button type="button" class="cell" data-index="1" role="gridcell" aria-label="Cell 2"></button>
-        <button type="button" class="cell" data-index="2" role="gridcell" aria-label="Cell 3"></button>
-        <button type="button" class="cell" data-index="3" role="gridcell" aria-label="Cell 4"></button>
-        <button type="button" class="cell" data-index="4" role="gridcell" aria-label="Cell 5"></button>
-        <button type="button" class="cell" data-index="5" role="gridcell" aria-label="Cell 6"></button>
-        <button type="button" class="cell" data-index="6" role="gridcell" aria-label="Cell 7"></button>
-        <button type="button" class="cell" data-index="7" role="gridcell" aria-label="Cell 8"></button>
-        <button type="button" class="cell" data-index="8" role="gridcell" aria-label="Cell 9"></button>
+        <p class="status" id="status" aria-live="polite">X's turn</p>
+
+        <div class="board" id="board" role="grid" aria-label="Tic tac toe board">
+          <button type="button" class="cell" data-index="0" role="gridcell" aria-label="Cell 1"></button>
+          <button type="button" class="cell" data-index="1" role="gridcell" aria-label="Cell 2"></button>
+          <button type="button" class="cell" data-index="2" role="gridcell" aria-label="Cell 3"></button>
+          <button type="button" class="cell" data-index="3" role="gridcell" aria-label="Cell 4"></button>
+          <button type="button" class="cell" data-index="4" role="gridcell" aria-label="Cell 5"></button>
+          <button type="button" class="cell" data-index="5" role="gridcell" aria-label="Cell 6"></button>
+          <button type="button" class="cell" data-index="6" role="gridcell" aria-label="Cell 7"></button>
+          <button type="button" class="cell" data-index="7" role="gridcell" aria-label="Cell 8"></button>
+          <button type="button" class="cell" data-index="8" role="gridcell" aria-label="Cell 9"></button>
+        </div>
+
+        <button type="button" class="btn-new-game" id="new-game">New Game</button>
       </div>
 
-      <button type="button" class="btn-new-game" id="new-game">New Game</button>
+      <div id="game-miner" class="game-panel" hidden>
+        <header class="header">
+          <h1>Miner</h1>
+          <p class="subtitle">Reveal every safe cell — flag the mines to win</p>
+        </header>
+
+        <section class="miner-hud" aria-label="Miner status">
+          <div class="hud-card">
+            <span class="hud-label">Mines</span>
+            <span class="hud-value" id="miner-mines-left">10</span>
+          </div>
+          <div class="hud-card">
+            <span class="hud-label">Flags</span>
+            <span class="hud-value" id="miner-flags">0</span>
+          </div>
+        </section>
+
+        <p class="status" id="miner-status" aria-live="polite">Left-click to reveal, right-click to flag</p>
+
+        <div class="miner-board-wrap">
+          <div class="miner-board" id="miner-board" role="grid" aria-label="Miner board"></div>
+        </div>
+
+        <button type="button" class="btn-new-game" id="miner-new-game">New Game</button>
+      </div>
+
+      <div id="game-sokoban" class="game-panel" hidden>
+        <header class="header">
+          <h1>Sokoban</h1>
+          <p class="subtitle">Push the crates onto every goal spot</p>
+        </header>
+
+        <section class="sokoban-hud" aria-label="Sokoban status">
+          <div class="hud-card">
+            <span class="hud-label">Level</span>
+            <span class="hud-value hud-value-sm" id="sokoban-level">1 / 20</span>
+          </div>
+          <div class="hud-card">
+            <span class="hud-label">Moves</span>
+            <span class="hud-value" id="sokoban-moves">0</span>
+          </div>
+        </section>
+
+        <p class="status" id="sokoban-status" aria-live="polite">Push every box onto a goal</p>
+
+        <div class="sokoban-board-wrap">
+          <div class="sokoban-board" id="sokoban-board" role="grid" aria-label="Sokoban board"></div>
+        </div>
+
+        <div class="sokoban-pad" aria-label="Movement controls">
+          <button type="button" class="sokoban-dir" data-dir="up" aria-label="Move up">↑</button>
+          <div class="sokoban-pad-row">
+            <button type="button" class="sokoban-dir" data-dir="left" aria-label="Move left">←</button>
+            <button type="button" class="sokoban-dir" data-dir="down" aria-label="Move down">↓</button>
+            <button type="button" class="sokoban-dir" data-dir="right" aria-label="Move right">→</button>
+          </div>
+        </div>
+
+        <section class="sokoban-actions">
+          <button type="button" class="btn-reset" id="sokoban-prev">Prev Level</button>
+          <button type="button" class="btn-reset" id="sokoban-reset">Restart</button>
+          <button type="button" class="btn-reset" id="sokoban-next">Next Level</button>
+        </section>
+      </div>
     </div>
 
+    <script src="tictactoe.js"></script>
+    <script src="miner.js"></script>
+    <script src="sokoban.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
